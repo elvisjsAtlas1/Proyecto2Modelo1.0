@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: acad-apoderado-service  # Nombre del servicio para Eureka y logs
+    name: acad-antecedenteMedico-service  # Nombre del servicio para Eureka y logs
 
   datasource:
     url: jdbc:h2:mem:acad_antecedentemedico_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE

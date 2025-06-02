@@ -25,8 +25,8 @@ spring:
           filters:
             - AuthFilter
 
-        - id: acad-antecedente-medico-service
-          uri: lb://acad-antecedente-medico-service
+        - id: acad-antecedenteMedico-service
+          uri: lb://acad-antecedenteMedico-service
           predicates:
             - Path=/antecedentes-medicos/**
           filters:

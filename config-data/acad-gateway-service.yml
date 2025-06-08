@@ -31,6 +31,12 @@ spring:
             - Path=/antecedentes-medicos/**
           filters:
             - AuthFilter
+        - id: acad-requisito-service
+          uri: lb://acad-requisito-service
+          predicates:
+            - Path=/requisitos/**
+          filters:
+            - AuthFilter
         - id: acad-auth-service
           uri: lb://acad-auth-service
           predicates:

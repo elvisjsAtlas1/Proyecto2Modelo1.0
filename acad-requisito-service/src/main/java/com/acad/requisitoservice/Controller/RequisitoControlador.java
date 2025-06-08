@@ -18,8 +18,15 @@ public class RequisitoControlador {
 
     // Listar todos los requisitos
     @GetMapping
-    public ResponseEntity<List<Requisito>> listar() {
-        return new ResponseEntity<>(requisitoServicio.listar(), HttpStatus.OK);
+    public ResponseEntity<?> listar() {
+        try {
+            List<Requisito> requisitos = requisitoServicio.listar();
+            return new ResponseEntity<>(requisitos, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace(); // Imprime en consola
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al obtener requisitos: " + e.getMessage());
+        }
     }
 
     // Buscar un requisito por ID
@@ -59,4 +66,6 @@ public class RequisitoControlador {
         requisitoServicio.eliminar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
 }

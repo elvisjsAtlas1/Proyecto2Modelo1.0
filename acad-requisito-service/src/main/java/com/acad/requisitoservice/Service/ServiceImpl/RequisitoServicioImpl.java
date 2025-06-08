@@ -28,12 +28,19 @@ public class RequisitoServicioImpl implements RequisitoServicio {
     public List<Requisito> listar() {
         return requisitoRepositorio.findAll().stream()
                 .map(requisito -> {
-                    requisito.setApoderado(apoderadoFeign.buscarApoderado(requisito.getApoderado().getIdApoderado()).getBody());
-                    requisito.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getAntecedenteMedico().getIdAntecedenteMedico()).getBody());
+                    if (requisito.getApoderado() != null && requisito.getApoderado().getIdApoderado() != null) {
+                        var apoderadoDto = apoderadoFeign.buscarApoderado(requisito.getApoderado().getIdApoderado()).getBody();
+                        requisito.setApoderado(apoderadoDto);
+                    }
+                    if (requisito.getAntecedenteMedico() != null && requisito.getAntecedenteMedico().getIdAntecedenteMedico() != null) {
+                        var antecedenteDto = antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getAntecedenteMedico().getIdAntecedenteMedico()).getBody();
+                        requisito.setAntecedenteMedico(antecedenteDto);
+                    }
                     return requisito;
                 })
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public Requisito buscar(Long id) {

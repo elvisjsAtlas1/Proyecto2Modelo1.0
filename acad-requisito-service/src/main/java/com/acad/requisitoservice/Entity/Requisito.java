@@ -42,13 +42,13 @@ public class Requisito {
     @Column(name = "familiar_militar", length = 100)
     private String familiarMilitar;
 
-    private Integer idApoderado;
+    private Long idApoderado;
 
     @Transient
     @JsonIgnore
     private ApoderadoDto apoderado;
 
-    private Integer idAntecedenteMedico;
+    private Long idAntecedenteMedico;
 
     @Transient
     @JsonIgnore

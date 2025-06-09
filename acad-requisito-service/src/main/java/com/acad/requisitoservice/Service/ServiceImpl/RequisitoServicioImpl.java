@@ -28,24 +28,24 @@ public class RequisitoServicioImpl implements RequisitoServicio {
     public List<Requisito> listar() {
         return requisitoRepositorio.findAll().stream()
                 .map(requisito -> {
-                    // Validar que requisito.getApoderado() no sea null
+                    // Solo si existe el ID, llamas al servicio externo
                     if (requisito.getIdApoderado() != null) {
-                        requisito.setApoderado(apoderadoFeign
-                                .buscarApoderado(requisito.getIdApoderado())
-                                .getBody());
+                        requisito.setApoderado(
+                                apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody()
+                        );
                     }
 
-                    // Validar que requisito.getIdAntecedenteMedico() no sea null
                     if (requisito.getIdAntecedenteMedico() != null) {
-                        requisito.setAntecedenteMedico(antecedenteMedicoFeign
-                                .buscarAntecedenteMedico(requisito.getIdAntecedenteMedico())
-                                .getBody());
+                        requisito.setAntecedenteMedico(
+                                antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody()
+                        );
                     }
 
                     return requisito;
                 })
                 .collect(Collectors.toList());
     }
+
 
 
     @Override

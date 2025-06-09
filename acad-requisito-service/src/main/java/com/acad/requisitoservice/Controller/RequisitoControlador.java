@@ -46,8 +46,8 @@ public class RequisitoControlador {
         Requisito existente = requisitoServicio.buscar(id);
         if (existente != null) {
             requisito.setIdRequisitos(id); // Mantener ID existente
-            Requisito actualizado = requisitoServicio.actualizar(requisito);
-            return new ResponseEntity<>(actualizado, HttpStatus.OK);
+            Requisito requisitoActualizado = requisitoServicio.actualizar(requisito);
+            return new ResponseEntity<>(requisitoActualizado, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -25,22 +25,22 @@ public class AntecedenteMedicoControlador {
     // Buscar antecedente médico por ID
     @GetMapping("/{id}")
     public ResponseEntity<AntecedenteMedico> buscar(@PathVariable Long id) {
-        Optional<AntecedenteMedico> antecedente = antecedenteMedicoServicio.buscar(id);
-        return antecedente.map(ResponseEntity::ok)
+        Optional<AntecedenteMedico> antecedenteMedico = antecedenteMedicoServicio.buscar(id);
+        return antecedenteMedico.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     // Guardar nuevo antecedente médico
     @PostMapping
-    public ResponseEntity<AntecedenteMedico> guardar(@RequestBody AntecedenteMedico antecedente) {
-        AntecedenteMedico nuevo = antecedenteMedicoServicio.guardar(antecedente);
+    public ResponseEntity<AntecedenteMedico> guardar(@RequestBody AntecedenteMedico antecedenteMedico) {
+        AntecedenteMedico nuevo = antecedenteMedicoServicio.guardar(antecedenteMedico);
         return ResponseEntity.ok(nuevo);
     }
 
     // Modificar antecedente médico existente
     @PutMapping("/{id}")
-    public ResponseEntity<AntecedenteMedico> modificar(@PathVariable Long id, @RequestBody AntecedenteMedico antecedente) {
-        AntecedenteMedico actualizado = antecedenteMedicoServicio.modificar(id, antecedente);
+    public ResponseEntity<AntecedenteMedico> modificar(@PathVariable Long id, @RequestBody AntecedenteMedico antecedenteMedico) {
+        AntecedenteMedico actualizado = antecedenteMedicoServicio.modificar(id, antecedenteMedico);
         return ResponseEntity.ok(actualizado);
     }
 

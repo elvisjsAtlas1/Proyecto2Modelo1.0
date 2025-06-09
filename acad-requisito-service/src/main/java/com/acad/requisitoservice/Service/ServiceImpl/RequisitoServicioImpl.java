@@ -9,6 +9,7 @@ import com.acad.requisitoservice.Repository.RequisitoRepositorio;
 import com.acad.requisitoservice.Service.RequisitoServicio;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,26 +53,52 @@ public class RequisitoServicioImpl implements RequisitoServicio {
 
     @Override
     public Requisito guardar(Requisito requisito) {
-        // Validar existencia del apoderado
-        ApoderadoDto apoderado = apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody();
-        if (apoderado == null) {
-            throw new IllegalArgumentException("El apoderado no existe.");
+        // 1. Crear o validar Apoderado
+        ApoderadoDto apoderado = null;
+        if (requisito.getIdApoderado() != null) {
+            apoderado = apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody();
+            if (apoderado == null) {
+                throw new IllegalArgumentException("El apoderado no existe.");
+            }
+        } else if (requisito.getApoderado() != null) {
+            ResponseEntity<ApoderadoDto> resp = apoderadoFeign.crearApoderado(requisito.getApoderado());
+            if (resp.getStatusCode().is2xxSuccessful()) {
+                apoderado = resp.getBody();
+                requisito.setIdApoderado(apoderado.getIdApoderado()); // Actualiza el ID para guardar
+            } else {
+                throw new IllegalStateException("No se pudo crear el apoderado.");
+            }
+        } else {
+            throw new IllegalArgumentException("Debe proporcionar un ID o un objeto de apoderado.");
         }
 
-        // Validar existencia del antecedente médico
-        AntecedenteMedicoDto antecedenteMedico = antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody();
-        if (antecedenteMedico == null) {
-            throw new IllegalArgumentException("El antecedente médico no existe.");
+        // 2. Crear o validar Antecedente Médico
+        AntecedenteMedicoDto antecedente = null;
+        if (requisito.getIdAntecedenteMedico() != null) {
+            antecedente = antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody();
+            if (antecedente == null) {
+                throw new IllegalArgumentException("El antecedente médico no existe.");
+            }
+        } else if (requisito.getAntecedenteMedico() != null) {
+            ResponseEntity<AntecedenteMedicoDto> resp = antecedenteMedicoFeign.crearAntecedenteMedico(requisito.getAntecedenteMedico());
+            if (resp.getStatusCode().is2xxSuccessful()) {
+                antecedente = resp.getBody();
+                requisito.setIdAntecedenteMedico(antecedente.getIdAntecedenteMedico());
+            } else {
+                throw new IllegalStateException("No se pudo crear el antecedente médico.");
+            }
+        } else {
+            throw new IllegalArgumentException("Debe proporcionar un ID o un objeto de antecedente médico.");
         }
 
-        // Guardar el requisito
+        // 3. Guardar el requisito con los ID ya validados o recién creados
         Requisito requisitoGuardado = requisitoRepositorio.save(requisito);
-
         requisitoGuardado.setApoderado(apoderado);
-        requisitoGuardado.setAntecedenteMedico(antecedenteMedico);
+        requisitoGuardado.setAntecedenteMedico(antecedente);
 
         return requisitoGuardado;
     }
+
 
 
 

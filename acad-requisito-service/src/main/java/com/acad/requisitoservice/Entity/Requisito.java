@@ -1,6 +1,7 @@
 package com.acad.requisitoservice.Entity;
 import com.acad.requisitoservice.Dto.AntecedenteMedicoDto;
 import com.acad.requisitoservice.Dto.ApoderadoDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -41,14 +42,18 @@ public class Requisito {
     @Column(name = "familiar_militar", length = 100)
     private String familiarMilitar;
 
+    @JsonIgnore
     private Long idApoderado;
 
     @Transient
+
     private ApoderadoDto apoderado;
 
+    @JsonIgnore
     private Long idAntecedenteMedico;
 
     @Transient
+
     private AntecedenteMedicoDto antecedenteMedico;
 
 }

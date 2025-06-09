@@ -32,7 +32,7 @@ public class AntecedenteMedicoServicioImpl implements AntecedenteMedicoServicio 
 
     @Override
     public AntecedenteMedico modificar(Integer id, AntecedenteMedico antecedente) {
-        antecedente.setIdAntecedenteMedico(id);
+        antecedente.setIdAntecedenteMedico(antecedente.getIdAntecedenteMedico());
         return antecedenteMedicoRepositorio.save(antecedente);
     }
 

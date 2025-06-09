@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class AntecedenteMedicoDto {
-    private Long idAntecedenteMedico;
+    private Integer idAntecedenteMedico;
     private String edad;
     private String altura;
     private String peso;

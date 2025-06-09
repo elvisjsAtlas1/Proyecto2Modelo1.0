@@ -24,7 +24,7 @@ public class AntecedenteMedicoControlador {
 
     // Buscar antecedente médico por ID
     @GetMapping("/{id}")
-    public ResponseEntity<AntecedenteMedico> buscar(@PathVariable Integer id) {
+    public ResponseEntity<AntecedenteMedico> buscar(@PathVariable Long id) {
         Optional<AntecedenteMedico> antecedente = antecedenteMedicoServicio.buscar(id);
         return antecedente.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -39,14 +39,14 @@ public class AntecedenteMedicoControlador {
 
     // Modificar antecedente médico existente
     @PutMapping("/{id}")
-    public ResponseEntity<AntecedenteMedico> modificar(@PathVariable Integer id, @RequestBody AntecedenteMedico antecedente) {
+    public ResponseEntity<AntecedenteMedico> modificar(@PathVariable Long id, @RequestBody AntecedenteMedico antecedente) {
         AntecedenteMedico actualizado = antecedenteMedicoServicio.modificar(id, antecedente);
         return ResponseEntity.ok(actualizado);
     }
 
     // Eliminar antecedente médico
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         antecedenteMedicoServicio.eliminar(id);
         return ResponseEntity.noContent().build();
     }

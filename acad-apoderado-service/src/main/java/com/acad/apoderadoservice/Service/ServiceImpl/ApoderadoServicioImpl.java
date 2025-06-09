@@ -22,7 +22,7 @@ public class ApoderadoServicioImpl implements ApoderadoServicio {
     }
 
     @Override
-    public Optional<Apoderado> buscar(Integer id) {
+    public Optional<Apoderado> buscar(Long id) {
         return apoderadoRepositorio.findById(id);
     }
 
@@ -33,13 +33,13 @@ public class ApoderadoServicioImpl implements ApoderadoServicio {
     }
 
     @Override
-    public Apoderado modificar(Integer id, Apoderado apoderado) {
+    public Apoderado modificar(Long id, Apoderado apoderado) {
         apoderado.setIdApoderado(id);
         return apoderadoRepositorio.save(apoderado);
     }
 
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Long id) {
         apoderadoRepositorio.deleteById(id);
     }
 }

@@ -36,6 +36,8 @@ spring:
           uri: lb://acad-requisito-service
           predicates:
             - Path=/requisitos/**
+          filters:
+            - AuthFilter
 
         - id: acad-auth-service
           uri: lb://acad-auth-service

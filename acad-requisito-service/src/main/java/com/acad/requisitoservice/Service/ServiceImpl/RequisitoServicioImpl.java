@@ -1,10 +1,13 @@
 package com.acad.requisitoservice.Service.ServiceImpl;
 
+import com.acad.requisitoservice.Dto.AntecedenteMedicoDto;
+import com.acad.requisitoservice.Dto.ApoderadoDto;
 import com.acad.requisitoservice.Entity.Requisito;
 import com.acad.requisitoservice.Feign.AntecedenteMedicoFeign;
 import com.acad.requisitoservice.Feign.ApoderadoFeign;
 import com.acad.requisitoservice.Repository.RequisitoRepositorio;
 import com.acad.requisitoservice.Service.RequisitoServicio;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,33 +31,20 @@ public class RequisitoServicioImpl implements RequisitoServicio {
     public List<Requisito> listar() {
         return requisitoRepositorio.findAll().stream()
                 .map(requisito -> {
-                    // Solo si existe el ID, llamas al servicio externo
-                    if (requisito.getIdApoderado() != null) {
-                        requisito.setApoderado(
-                                apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody()
-                        );
-                    }
-
-                    if (requisito.getIdAntecedenteMedico() != null) {
-                        requisito.setAntecedenteMedico(
-                                antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody()
-                        );
-                    }
-
+                    requisito.setApoderado(apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody());
+                    requisito.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody());
                     return requisito;
                 })
                 .collect(Collectors.toList());
     }
-
-
 
     @Override
     public Requisito buscar(Long id) {
         Optional<Requisito> requisitoOptional = requisitoRepositorio.findById(id);
         if (requisitoOptional.isPresent()) {
             Requisito requisito = requisitoOptional.get();
-            requisito.setApoderado(apoderadoFeign.buscarApoderado(requisito.getApoderado().getIdApoderado()).getBody());
-            requisito.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getAntecedenteMedico().getIdAntecedenteMedico()).getBody());
+            requisito.setApoderado(apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody());
+            requisito.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody());
             return requisito;
         }
         return null;
@@ -62,29 +52,34 @@ public class RequisitoServicioImpl implements RequisitoServicio {
 
     @Override
     public Requisito guardar(Requisito requisito) {
-        // Validación de existencia
-        if (apoderadoFeign.buscarApoderado(requisito.getApoderado().getIdApoderado()).getBody() == null) {
+        // Validar existencia del apoderado
+        ApoderadoDto apoderado = apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody();
+        if (apoderado == null) {
             throw new IllegalArgumentException("El apoderado no existe.");
         }
 
-        if (antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getAntecedenteMedico().getIdAntecedenteMedico()).getBody() == null) {
+        // Validar existencia del antecedente médico
+        AntecedenteMedicoDto antecedenteMedico = antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getIdAntecedenteMedico()).getBody();
+        if (antecedenteMedico == null) {
             throw new IllegalArgumentException("El antecedente médico no existe.");
         }
 
-        Requisito guardado = requisitoRepositorio.save(requisito);
+        // Guardar el requisito
+        Requisito requisitoGuardado = requisitoRepositorio.save(requisito);
 
-        // Asociar DTOs
-        guardado.setApoderado(apoderadoFeign.buscarApoderado(requisito.getApoderado().getIdApoderado()).getBody());
-        guardado.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(requisito.getAntecedenteMedico().getIdAntecedenteMedico()).getBody());
+        requisitoGuardado.setApoderado(apoderado);
+        requisitoGuardado.setAntecedenteMedico(antecedenteMedico);
 
-        return guardado;
+        return requisitoGuardado;
     }
+
+
 
     @Override
     public Requisito actualizar(Requisito requisito) {
         Requisito actualizado = requisitoRepositorio.save(requisito);
-        actualizado.setApoderado(apoderadoFeign.buscarApoderado(actualizado.getApoderado().getIdApoderado()).getBody());
-        actualizado.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(actualizado.getAntecedenteMedico().getIdAntecedenteMedico()).getBody());
+        actualizado.setApoderado(apoderadoFeign.buscarApoderado(actualizado.getIdApoderado()).getBody());
+        actualizado.setAntecedenteMedico(antecedenteMedicoFeign.buscarAntecedenteMedico(actualizado.getIdAntecedenteMedico()).getBody());
         return actualizado;
     }
 

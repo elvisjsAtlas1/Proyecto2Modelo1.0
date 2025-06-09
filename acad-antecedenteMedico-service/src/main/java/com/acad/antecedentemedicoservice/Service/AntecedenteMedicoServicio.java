@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface AntecedenteMedicoServicio {
     List<AntecedenteMedico> listar();
-    Optional<AntecedenteMedico> buscar(Integer id);
+    Optional<AntecedenteMedico> buscar(Long id);
     AntecedenteMedico guardar(AntecedenteMedico antecedente);
-    AntecedenteMedico modificar(Integer id, AntecedenteMedico antecedente);
-    void eliminar(Integer id);
+    AntecedenteMedico modificar(Long id, AntecedenteMedico antecedente);
+    void eliminar(Long id);
 }

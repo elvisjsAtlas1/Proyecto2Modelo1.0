@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ApoderadoDto {
-    private Integer idApoderado;
+    private Long idApoderado;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;

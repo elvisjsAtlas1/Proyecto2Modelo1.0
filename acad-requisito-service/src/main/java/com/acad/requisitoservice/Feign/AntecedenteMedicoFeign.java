@@ -12,11 +12,11 @@ public interface AntecedenteMedicoFeign {
 
     @GetMapping("/{id}")
     @CircuitBreaker(name = "antecedenteMedicoListarPorIdCB", fallbackMethod = "fallbackAntecedenteMedicoById")
-    ResponseEntity<AntecedenteMedicoDto> buscarAntecedenteMedico(@PathVariable Integer id);
+    ResponseEntity<AntecedenteMedicoDto> buscarAntecedenteMedico(@PathVariable Long id);
 
-    default ResponseEntity<AntecedenteMedicoDto> fallbackAntecedenteMedicoById(Integer id, Throwable e) {
-        AntecedenteMedicoDto dto = new AntecedenteMedicoDto();
-        dto.setEstadoPsicologico("Servicio de antecedente médico no disponible 😞");
-        return ResponseEntity.ok(dto);
+    default ResponseEntity<AntecedenteMedicoDto> fallbackAntecedenteMedicoById(Long id, Throwable e) {
+        AntecedenteMedicoDto antecedenteMedico = new AntecedenteMedicoDto();
+        antecedenteMedico.setEstadoPsicologico("Servicio de antecedente médico no disponible");
+        return ResponseEntity.ok(antecedenteMedico);
     }
 }

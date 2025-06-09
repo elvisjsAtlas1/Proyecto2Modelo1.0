@@ -17,7 +17,7 @@ public class Apoderado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idApoderado")
-    private Integer idApoderado;
+    private Long idApoderado;
 
     @Column(name = "nombres", length = 45)
     private String nombres;

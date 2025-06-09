@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RequisitoRepositorio extends JpaRepository<Requisito, Long> {
 
-    long countByidApoderado(Long idApoderado);
 }

@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface ApoderadoServicio {
     List<Apoderado> listar();
-    Optional<Apoderado> buscar(Integer id);
+    Optional<Apoderado> buscar(Long id);
     Apoderado guardar(Apoderado apoderado);
-    Apoderado modificar(Integer id, Apoderado apoderado);
-    void eliminar(Integer id);
+    Apoderado modificar(Long id, Apoderado apoderado);
+    void eliminar(Long id);
 }

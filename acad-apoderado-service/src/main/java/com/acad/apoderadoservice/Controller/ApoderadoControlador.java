@@ -24,7 +24,7 @@ public class ApoderadoControlador {
 
     // Buscar apoderado por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Apoderado> buscar(@PathVariable Integer id) {
+    public ResponseEntity<Apoderado> buscar(@PathVariable Long id) {
         Optional<Apoderado> apoderado = apoderadoServicio.buscar(id);
         return apoderado.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -39,14 +39,14 @@ public class ApoderadoControlador {
 
     // Modificar apoderado existente
     @PutMapping("/{id}")
-    public ResponseEntity<Apoderado> modificar(@PathVariable Integer id, @RequestBody Apoderado apoderado) {
+    public ResponseEntity<Apoderado> modificar(@PathVariable Long id, @RequestBody Apoderado apoderado) {
         Apoderado actualizado = apoderadoServicio.modificar(id, apoderado);
         return ResponseEntity.ok(actualizado);
     }
 
     // Eliminar apoderado
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         apoderadoServicio.eliminar(id);
         return ResponseEntity.noContent().build();
     }

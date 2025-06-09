@@ -1,6 +1,7 @@
 package com.acad.requisitoservice.Service;
 
 import com.acad.requisitoservice.Entity.Requisito;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.util.List;
 

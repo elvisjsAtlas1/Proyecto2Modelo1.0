@@ -21,7 +21,7 @@ public class AntecedenteMedicoServicioImpl implements AntecedenteMedicoServicio 
     }
 
     @Override
-    public Optional<AntecedenteMedico> buscar(Integer id) {
+    public Optional<AntecedenteMedico> buscar(Long id) {
         return antecedenteMedicoRepositorio.findById(id);
     }
 
@@ -31,13 +31,13 @@ public class AntecedenteMedicoServicioImpl implements AntecedenteMedicoServicio 
     }
 
     @Override
-    public AntecedenteMedico modificar(Integer id, AntecedenteMedico antecedente) {
+    public AntecedenteMedico modificar(Long id, AntecedenteMedico antecedente) {
         antecedente.setIdAntecedenteMedico(antecedente.getIdAntecedenteMedico());
         return antecedenteMedicoRepositorio.save(antecedente);
     }
 
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Long id) {
         antecedenteMedicoRepositorio.deleteById(id);
     }
 }

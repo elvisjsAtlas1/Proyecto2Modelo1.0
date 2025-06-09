@@ -12,11 +12,11 @@ public interface ApoderadoFeign {
 
     @GetMapping("/{id}")
     @CircuitBreaker(name = "apoderadoListarPorIdCB", fallbackMethod = "fallbackApoderadoById")
-    ResponseEntity<ApoderadoDto> buscarApoderado(@PathVariable Integer id);
+    ResponseEntity<ApoderadoDto> buscarApoderado(@PathVariable Long id);
 
-    default ResponseEntity<ApoderadoDto> fallbackApoderadoById(Integer id, Throwable e) {
+    default ResponseEntity<ApoderadoDto> fallbackApoderadoById(Long id, Throwable e) {
         ApoderadoDto apoderadoDto = new ApoderadoDto();
-        apoderadoDto.setNombres("Servicio de apoderado no disponible 😞");
+        apoderadoDto.setNombres("Servicio de apoderado no disponible");
         return ResponseEntity.ok(apoderadoDto);
     }
 }

@@ -55,6 +55,7 @@ public class RequisitoServicioImpl implements RequisitoServicio {
     public Requisito guardar(Requisito requisito) {
         // 1. Crear o validar Apoderado
         ApoderadoDto apoderado = null;
+        Long idApoderado = requisito.getIdApoderado();
         if (requisito.getIdApoderado() != null) {
             apoderado = apoderadoFeign.buscarApoderado(requisito.getIdApoderado()).getBody();
             if (apoderado == null) {

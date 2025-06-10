@@ -1,4 +1,8 @@
 package com.acad.matriculaservice.Repository;
 
-public interface MatriculaRepositorio {
+import com.acad.matriculaservice.Entity.Matricula;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface MatriculaRepositorio extends JpaRepository<Matricula, Long> {
 }

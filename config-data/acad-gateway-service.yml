@@ -43,10 +43,3 @@ spring:
           uri: lb://acad-auth-service
           predicates:
             - Path=/auth/**
-
-        - id: acad-matricula-service
-          uri: lb://acad-matricula-service
-          predicates:
-              - Path=/matriculas/**
-
-

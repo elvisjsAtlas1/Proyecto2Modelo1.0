@@ -15,6 +15,9 @@ public class RequisitosDto {
     private String constanciaDeComportamiento;
     private String constanciaDeNoAdeudo;
     private String familiarMilitar;
+    private Long idApoderado;
+    private Long idAntecedenteMedico;
+
     //aqui agregamos mas los que queremos que se muestren en nuestra consulta para completar todos los campos
 
     //agregamos despues para los que si queremos que esten como los de apoderado y antecedentemedico

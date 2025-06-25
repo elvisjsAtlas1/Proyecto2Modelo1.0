@@ -1,23 +1,36 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {Category} from './category/category';
-import {ApoderadoServiceService} from './core/service/apoderado-service.service';
+
+import {ApoderadoService} from './core/service/apoderado/apoderado.service';
+import {Apoderado} from './category/apoderado/apoderado';
+import {RequisitoService} from './core/service/requisito/requisito.service';
+import {AntecedenteMedicoService} from './core/service/antecedenteMedico/antecedente-medico.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Category],
+  imports: [RouterOutlet, Apoderado],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'acad-front';
 
-  constructor(private apoderadoServiceService: ApoderadoServiceService) {
-    this.apoderadoServiceService.getApoderados().subscribe(response=>{
+  constructor(private apoderadoService: ApoderadoService,
+              private requisitoService: RequisitoService,
+              private antecedenteMedicoService: AntecedenteMedicoService,) {
+    this.apoderadoService.getApoderados().subscribe(response=>{
       console.log(response);
     });
+    this.requisitoService.getRequisitos().subscribe(response=>{
+      console.log(response);
+    });
+    this.antecedenteMedicoService.getAntecedentesMedicos().subscribe(response=>{
+      console.log(response);
+    })
   }
+
+
 
 
   //protected readonly getEnabledCategories = getEnabledCategories;

@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {resources} from '../resources/resources';
+import {resources} from '../../resources/resources';
 
 
 @Injectable({providedIn: 'root'})
-export class ApoderadoServiceService {
+export class ApoderadoService {
   constructor(private http: HttpClient) {
   }
 

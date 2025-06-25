@@ -1,18 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {Requisito} from './requisito';
 
-import { Category } from './category';
-
-describe('CategoryModel', () => {
-  let component: Category;
-  let fixture: ComponentFixture<Category>;
+describe('RequisitoModel', () => {
+  let component: Requisito;
+  let fixture: ComponentFixture<Requisito>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Category]
-    })
-    .compileComponents();
+      imports: [Requisito] // standalone component
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(Category);
+    fixture = TestBed.createComponent(Requisito);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

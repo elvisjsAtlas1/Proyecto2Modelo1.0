@@ -2,19 +2,20 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import {ApoderadoModel} from '../models/apoderado-model';
 import {AntecedenteMedicoModel} from '../models/antedecedente-medico-model';
+import {MatriculaModel} from '../models/matricula-model';
 
 @Component({
   selector: 'app-apoderado',
   standalone: true,
   imports: [CommonModule, NgFor],
-  templateUrl: './antecedenteMedico.html',
-  styleUrl: './antecedenteMedico.scss'
+  templateUrl: './matricula.html',
+  styleUrl: './matricula.scss'
 })
-export class AntecedenteMedico implements OnInit {
+export class Matricula implements OnInit {
 
-  @Input() antecedentesMedicos: AntecedenteMedicoModel[] = [];
+  @Input() matriculas: MatriculaModel[] = [];
 
   ngOnInit(): void {
-    console.log("=======>> Lista de antecedentes medicos:", this.antecedentesMedicos);
+    console.log("=======>> Lista de matriculas:", this.matriculas);
   }
 }

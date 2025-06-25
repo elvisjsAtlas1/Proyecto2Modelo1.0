@@ -14,6 +14,6 @@ export class Requisito implements OnInit {
   @Input() requisitos: RequisitoModel[] = [];
 
   ngOnInit(): void {
-    console.log("=======>> Lista de apoderados:", this.requisitos);
+    console.log("=======>> Lista de requisitos:", this.requisitos);
   }
 }

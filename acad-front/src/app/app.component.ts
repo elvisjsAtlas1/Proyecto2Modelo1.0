@@ -5,6 +5,7 @@ import {ApoderadoService} from './core/service/apoderado/apoderado.service';
 import {Apoderado} from './category/apoderado/apoderado';
 import {RequisitoService} from './core/service/requisito/requisito.service';
 import {AntecedenteMedicoService} from './core/service/antecedenteMedico/antecedente-medico.service';
+import {MatriculaService} from './core/service/matricula/matricula.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
 
   constructor(private apoderadoService: ApoderadoService,
               private requisitoService: RequisitoService,
-              private antecedenteMedicoService: AntecedenteMedicoService,) {
+              private antecedenteMedicoService: AntecedenteMedicoService,
+              private matriculaService: MatriculaService) {
     this.apoderadoService.getApoderados().subscribe(response=>{
       console.log(response);
     });
@@ -26,6 +28,9 @@ export class AppComponent {
       console.log(response);
     });
     this.antecedenteMedicoService.getAntecedentesMedicos().subscribe(response=>{
+      console.log(response);
+    });
+    this.matriculaService.getMatriculas().subscribe(response=>{
       console.log(response);
     })
   }

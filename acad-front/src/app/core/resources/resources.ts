@@ -6,6 +6,9 @@ export const resources = {
     requisito: "requisitos",
   },
   antecedenteMedicos: {
-    antecedenteMedico: "antecedenteMedicos",
+    antecedenteMedico: "antecedentes-medicos",
+  },
+  matriculas: {
+    matricula: "matriculas",
   }
 };

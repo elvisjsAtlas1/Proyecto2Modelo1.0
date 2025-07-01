@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   //const token = localStorage.getItem('token');
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJBRE1JTiIsImlkIjoyLCJpYXQiOjE3NTA4NjA4MDEsImV4cCI6MTc1MDg2NDQwMX0.KZ4nfVprRNRQBQV0EscJ80Nf3xjHsvnqPTTkmw5P8Vs";
+  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJFbHZpc0RCQSIsImlkIjoxMywiaWF0IjoxNzUxMzM2Mjk2LCJleHAiOjE3NTEzMzk4OTZ9.Enf2ARma9AIbvCWZLd-DZ3Swd4_E2j4M5WAhj3QUMUw";
 
   if (token) {
     const authReq = req.clone({

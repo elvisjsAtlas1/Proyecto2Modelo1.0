@@ -1,6 +1,7 @@
  // Ajusta la ruta si es necesario
 
-import {Requisito} from '../requisito/requisito';
+
+ import {RequisitoModel} from './requisito-model';
 
  export class MatriculaModel {
   idMatricula?: number;
@@ -10,5 +11,5 @@ import {Requisito} from '../requisito/requisito';
   codigoMatricula?: string;
   nivel?: string;
   idRequisitos?: number;
-  requisitos?: Requisito;
+  requisitos?: RequisitoModel;
 }

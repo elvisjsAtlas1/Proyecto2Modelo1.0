@@ -1,0 +1,66 @@
+<h2>Editar Matricula</h2>
+
+<form [formGroup]="requisitoForm" (ngSubmit)="guardar()">
+  <div class="mb-3">
+    <label>DNI del Estudiante</label>
+    <input formControlName="dniEstudiante" class="form-control" placeholder="Ingrese el DNI del estudiante" />
+  </div>
+
+  <div class="mb-3">
+    <label>Partida de Nacimiento Original</label>
+    <input formControlName="partidaNacimientoOriginal" class="form-control" placeholder="Ingrese partida de nacimiento" />
+  </div>
+
+  <div class="mb-3">
+    <label>Resolución Rectoral de Traslado</label>
+    <input formControlName="resolucionRectoralDeTraslado" class="form-control" placeholder="Ingrese resolución rectoral" />
+  </div>
+
+  <div class="mb-3">
+    <label>Certificado de Estudio</label>
+    <input formControlName="certificadoDeEstudio" class="form-control" placeholder="Ingrese certificado de estudio" />
+  </div>
+
+  <div class="mb-3">
+    <label>Ficha Matrícula Generado por SIAGE</label>
+    <input formControlName="fichaMatriculaGeneradoPorSIAGE" class="form-control" placeholder="Ingrese ficha SIAGE" />
+  </div>
+
+  <div class="mb-3">
+    <label>Constancia de Comportamiento</label>
+    <input formControlName="constanciaDeComportamiento" class="form-control" placeholder="Ingrese constancia de comportamiento" />
+  </div>
+
+  <div class="mb-3">
+    <label>Constancia de No Adeudo</label>
+    <input formControlName="constanciaDeNoAdeudo" class="form-control" placeholder="Ingrese constancia de no adeudo" />
+  </div>
+
+  <div class="mb-3">
+    <label>Familiar Militar</label>
+    <input formControlName="familiarMilitar" class="form-control" placeholder="Ingrese información militar (si aplica)" />
+  </div>
+
+  <div class="mb-3">
+    <label>Apoderado</label>
+    <select formControlName="idApoderado" class="form-select">
+      <option [ngValue]="null">Seleccione un apoderado</option>
+      <option *ngFor="let a of apoderados" [ngValue]="a.idApoderado">
+        {{ a.nombres }} {{ a.apellidoPaterno }} {{ a.apellidoMaterno }}
+      </option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Antecedente Médico</label>
+    <select formControlName="idAntecedenteMedico" class="form-select">
+      <option [ngValue]="null">Seleccione un antecedente médico</option>
+      <option *ngFor="let m of antecedentesMedicos" [ngValue]="m.idAntecedenteMedico">
+        Grupo: {{ m.grupoSanguineo }} | Edad: {{ m.edad }}
+      </option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>

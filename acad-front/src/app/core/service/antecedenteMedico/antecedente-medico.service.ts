@@ -1,18 +1,34 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {resources} from '../../resources/resources';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { resources } from '../../resources/resources';
+
+import {AntecedenteMedicoModel} from '../../../category/models/antedecedente-medico-model';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AntecedenteMedicoService {
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient) {}
+
+  getAntecedenteMedico(): Observable<AntecedenteMedicoModel[]> {
+    return this.http.get<AntecedenteMedicoModel[]>(resources.antecedenteMedicos.antecedenteMedico);
   }
 
-  getAntecedentesMedicos(): Observable<any[]> {
-    return this.http.get<any[]>(resources.antecedenteMedicos.antecedenteMedico); // Se agregará la baseUrl por el interceptor
+  getById$(id: number): Observable<AntecedenteMedicoModel> {
+    return this.http.get<AntecedenteMedicoModel>(`${resources.antecedenteMedicos.antecedenteMedico}/${id}`);
   }
 
+  create$(data: AntecedenteMedicoModel): Observable<AntecedenteMedicoModel> {
+    return this.http.post<AntecedenteMedicoModel>(resources.antecedenteMedicos.antecedenteMedico, data);
+  }
 
+  update$(id: number, data: AntecedenteMedicoModel): Observable<AntecedenteMedicoModel> {
+    return this.http.put<AntecedenteMedicoModel>(`${resources.antecedenteMedicos.antecedenteMedico}/${id}`, data);
+  }
+
+  delete$(id: number): Observable<void> {
+    return this.http.delete<void>(`${resources.antecedenteMedicos.antecedenteMedico}/${id}`);
+  }
 
 }

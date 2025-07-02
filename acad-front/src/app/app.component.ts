@@ -27,7 +27,7 @@ export class AppComponent {
     this.requisitoService.getRequisitos().subscribe(response=>{
       console.log(response);
     });
-    this.antecedenteMedicoService.getAntecedentesMedicos().subscribe(response=>{
+    this.antecedenteMedicoService.getAntecedenteMedico().subscribe(response=>{
       console.log(response);
     });
     this.matriculaService.getMatriculas().subscribe(response=>{

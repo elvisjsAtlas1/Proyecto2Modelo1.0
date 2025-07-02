@@ -1,0 +1,55 @@
+<h2>Editar Antecedente Médico</h2>
+<form [formGroup]="antecedenteMedicoForm" (ngSubmit)="guardar()">
+  <div class="mb-3">
+    <label>Edad</label>
+    <input formControlName="edad" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Altura (cm)</label>
+    <input formControlName="altura" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Peso (kg)</label>
+    <input formControlName="peso" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Grupo Sanguíneo</label>
+    <input formControlName="grupoSanguineo" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Enfermedades Padecidas</label>
+    <input formControlName="enfermedadesPadecidas" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Antecedente de Hospitalización o Cirugías</label>
+    <input formControlName="antecedenteDeHospitalizacionoDeCirugias" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>¿Se encuentra medicado?</label>
+    <input formControlName="seEncuentraMedicado" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>¿Presenta alguna discapacidad?</label>
+    <input formControlName="presentaDiscapacidad" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Alergias</label>
+    <input formControlName="alergias" class="form-control" />
+  </div>
+
+  <div class="mb-3">
+    <label>Estado Psicológico</label>
+    <input formControlName="estadoPsicologico" class="form-control" />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>

@@ -1,0 +1,41 @@
+<h2>Editar Matrícula</h2>
+
+<form [formGroup]="matriculaForm" (ngSubmit)="guardar()">
+  <div class="mb-3">
+    <label>Plan Académico</label>
+    <input formControlName="planAcademico" class="form-control" placeholder="Ingrese el plan académico" />
+  </div>
+
+  <div class="mb-3">
+    <label>Institución</label>
+    <input formControlName="institucion" class="form-control" placeholder="Ingrese la institución" />
+  </div>
+
+  <div class="mb-3">
+    <label>Usuario</label>
+    <input formControlName="usuario" class="form-control" placeholder="Ingrese el usuario" />
+  </div>
+
+  <div class="mb-3">
+    <label>Código de Matrícula</label>
+    <input formControlName="codigoMatricula" class="form-control" placeholder="Ingrese el código de matrícula" />
+  </div>
+
+  <div class="mb-3">
+    <label>Nivel</label>
+    <input formControlName="nivel" class="form-control" placeholder="Ingrese el nivel" />
+  </div>
+
+  <div class="mb-3">
+    <label>Requisito</label>
+    <select formControlName="idRequisitos" class="form-select">
+      <option [ngValue]="null">Seleccione un requisito</option>
+      <option *ngFor="let r of requisitos" [ngValue]="r.idRequisitos">
+        DNI: {{ r.dniEstudiante }} | Apoderado: {{ r.apoderado?.nombres }} {{ r.apoderado?.apellidoPaterno }}
+      </option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+</form>

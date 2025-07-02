@@ -44,7 +44,7 @@ export class EditApoderadoComponent implements OnInit {
   guardar(): void {
     if (this.apoderadoForm.valid) {
       this.apoderadoService.update$(this.idApoderado, this.apoderadoForm.value).subscribe(() => {
-        alert('Apoderado actualizado correctamente.');
+        alert('AntecedenteMedico actualizado correctamente.');
         this.router.navigate(['/apoderado']);
       });
     }

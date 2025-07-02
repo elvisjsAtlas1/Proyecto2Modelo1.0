@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RequisitoComponent } from './requisito'; // Asegúrate de que la ruta sea correcta
+import {NewRequisitoComponent} from './new/new-requisito.component';
 
 describe('RequisitoComponent', () => {
-  let component: RequisitoComponent;
-  let fixture: ComponentFixture<RequisitoComponent>;
+  let component: NewRequisitoComponent;
+  let fixture: ComponentFixture<NewRequisitoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RequisitoComponent] // standalone component
+      imports: [NewRequisitoComponent] // standalone component
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RequisitoComponent);
+    fixture = TestBed.createComponent(NewRequisitoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
